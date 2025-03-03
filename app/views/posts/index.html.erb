@@ -4,8 +4,13 @@
       <h4>
         <%# TODO: display the name of the user who created the post %>
         <%# 1. find user who created post %>
+        <% @poster = User.find_by({"id" => post["user_id"]} ) %>
+        <% if @poster != nil %>
+          <%= @poster["first_name"] %>
         <%# 2. handle any potential bad data where the post is missing a user %>
-        anonymous
+        <% else %>
+          anonymous
+        <% end %>
       </h4>
       <img src="<%= post["image"] %>" class="img-fluid w-full">
       <p><%= post["body"] %></p>
